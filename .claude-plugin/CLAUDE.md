@@ -1,7 +1,5 @@
 # authcurl Claude Code Plugin
 
-This plugin teaches Claude Code how to use, install, and configure `authcurl`.
+This plugin provides guidance for using, installing, and configuring `authcurl` — a curl wrapper with automatic auth injection.
 
-When a user mentions authcurl, curl authentication, API auth headers, or asks how to make authenticated HTTP requests from the CLI, load the `skills/authcurl` skill.
-
-The skill covers installation, config format, all three auth types (bearer, headers, basic), env var usage, and troubleshooting.
+The `authcurl` skill loads when the user mentions authcurl, curl authentication, API auth headers, or authenticated HTTP requests from the CLI.
