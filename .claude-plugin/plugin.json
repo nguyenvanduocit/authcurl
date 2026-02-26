@@ -1,0 +1,5 @@
+{
+  "name": "authcurl",
+  "description": "Guide for using authcurl - curl wrapper with automatic auth injection",
+  "skills": ["skills/authcurl"]
+}
