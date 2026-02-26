@@ -24,7 +24,6 @@ Download pre-built binaries from the [releases page](https://github.com/nguyenva
 **Homebrew:**
 
 ```sh
-# Coming soon
 brew install nguyenvanduocit/tap/authcurl
 ```
 
@@ -166,6 +165,29 @@ authcurl list                       List configured profiles and their auth type
 4. `syscall.Exec` replaces the authcurl process with `curl`. There is no wrapper process — exit codes, signals, stdin, stdout, and stderr all belong to curl directly.
 
 If no profile matches, curl runs with your original arguments unchanged.
+
+
+## Claude Code Skill
+
+authcurl ships with a [Claude Code](https://docs.anthropic.com/en/docs/claude-code) plugin skill that teaches Claude how to install, configure, and use authcurl on your behalf.
+
+**Install via OpenClaw:**
+
+```sh
+claude skill install authcurl --from openclaw
+```
+
+Or browse it on [OpenClaw](https://openclaw.dev/skills/authcurl).
+
+**Install manually:**
+
+Clone this repo and point Claude Code at the plugin directory:
+
+```sh
+claude --plugin-dir /path/to/authcurl
+```
+
+Once installed, Claude Code will automatically detect when you need authenticated curl requests and guide you through setup and usage.
 
 
 ## Requirements
