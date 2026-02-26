@@ -167,27 +167,38 @@ authcurl list                       List configured profiles and their auth type
 If no profile matches, curl runs with your original arguments unchanged.
 
 
-## Claude Code Skill
+## Claude Code Plugin
 
-authcurl ships with a [Claude Code](https://docs.anthropic.com/en/docs/claude-code) plugin skill that teaches Claude how to install, configure, and use authcurl on your behalf.
+authcurl ships with a [Claude Code](https://code.claude.com/docs/en/plugins) plugin that teaches Claude how to install, configure, and use authcurl on your behalf.
 
-**Install via OpenClaw:**
+**Install from GitHub:**
 
 ```sh
-claude skill install authcurl --from openclaw
+claude plugin add github:nguyenvanduocit/authcurl
 ```
 
-Or browse it on [OpenClaw](https://openclaw.dev/skills/authcurl).
-
-**Install manually:**
-
-Clone this repo and point Claude Code at the plugin directory:
+**Install from local directory:**
 
 ```sh
-claude --plugin-dir /path/to/authcurl
+claude plugin add ./path/to/authcurl
 ```
 
 Once installed, Claude Code will automatically detect when you need authenticated curl requests and guide you through setup and usage.
+
+Manage with: `claude plugin list`, `claude plugin update`, `claude plugin remove`.
+
+
+## OpenClaw Skill
+
+authcurl is also available as an [OpenClaw](https://clawhub.ai/) skill on [ClawHub](https://clawhub.ai/).
+
+**Install via ClawHub:**
+
+```sh
+clawhub install nguyenvanduocit/authcurl
+```
+
+The skill provides the same guidance for installation, configuration, and usage within OpenClaw agents.
 
 
 ## Requirements
