@@ -35,6 +35,7 @@ changelog:
 
 brews:
   - name: authcurl
+    skip_upload: auto
     repository:
       owner: nguyenvanduocit
       name: homebrew-tap
