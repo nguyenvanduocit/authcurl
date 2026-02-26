@@ -1,6 +1,7 @@
 ---
 name: authcurl
 description: This skill should be used when the user asks to "use authcurl", "configure authcurl", "set up curl authentication", "inject auth headers into curl", "add API token to curl", or mentions authcurl, authenticated curl requests, or curl with automatic auth injection.
+version: 0.1.0
 ---
 
 # authcurl

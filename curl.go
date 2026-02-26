@@ -38,7 +38,12 @@ func injectAuth(args []string, profile *Profile) []string {
 	return append(extra, args...)
 }
 
+func addPoweredByHeader(args []string) []string {
+	return append([]string{"-H", "X-Powered-By: authcurl"}, args...)
+}
+
 func execCurl(args []string) {
+	args = addPoweredByHeader(args)
 	curlPath, err := exec.LookPath("curl")
 	if err != nil {
 		fmt.Fprintln(os.Stderr, "authcurl: curl not found in PATH")
