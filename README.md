@@ -203,7 +203,7 @@ The skill provides the same guidance for installation, configuration, and usage 
 
 ## Requirements
 
-- Go 1.21+ (to build from source)
+- Go 1.24+ (to build from source)
 - `curl` available in `PATH`
 
 

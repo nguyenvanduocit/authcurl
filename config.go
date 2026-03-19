@@ -19,12 +19,18 @@ type Profile struct {
 	Bearer    string            `yaml:"bearer,omitempty"`
 	Headers   map[string]string `yaml:"headers,omitempty"`
 	BasicAuth *BasicAuth        `yaml:"basic_auth,omitempty"`
+	SecretKey *SecretKey        `yaml:"secret_key,omitempty"`
 	authType  string
 }
 
 type BasicAuth struct {
 	Username string `yaml:"username"`
 	Password string `yaml:"password"`
+}
+
+type SecretKey struct {
+	Name  string `yaml:"name"`
+	Value string `yaml:"value"`
 }
 
 func configPath() string {
@@ -54,6 +60,8 @@ func loadConfig() (*Config, error) {
 			p.authType = "basic"
 		case len(p.Headers) > 0:
 			p.authType = "headers"
+		case p.SecretKey != nil:
+			p.authType = "secret_key"
 		}
 		p.Bearer = os.ExpandEnv(p.Bearer)
 		for k, v := range p.Headers {
@@ -62,6 +70,9 @@ func loadConfig() (*Config, error) {
 		if p.BasicAuth != nil {
 			p.BasicAuth.Username = os.ExpandEnv(p.BasicAuth.Username)
 			p.BasicAuth.Password = os.ExpandEnv(p.BasicAuth.Password)
+		}
+		if p.SecretKey != nil {
+			p.SecretKey.Value = os.ExpandEnv(p.SecretKey.Value)
 		}
 	}
 
@@ -110,6 +121,13 @@ profiles:
     basic_auth:
       username: "${LEGACY_USER}"
       password: "${LEGACY_PASS}"
+
+  # Secret key as query parameter
+  - name: weather-api
+    match: "https://api.openweathermap.org/**"
+    secret_key:
+      name: "appid"
+      value: "${OPENWEATHER_KEY}"
 `
 
 func initConfig() error {

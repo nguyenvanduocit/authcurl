@@ -35,7 +35,35 @@ func injectAuth(args []string, profile *Profile) []string {
 		extra = append(extra, "-u", profile.BasicAuth.Username+":"+profile.BasicAuth.Password)
 	}
 
+	if profile.SecretKey != nil {
+		args = appendQueryParam(args, profile.SecretKey.Name, profile.SecretKey.Value)
+	}
+
 	return append(extra, args...)
+}
+
+func appendQueryParam(args []string, key, value string) []string {
+	param := key + "=" + value
+	for i, arg := range args {
+		if strings.HasPrefix(arg, "http://") || strings.HasPrefix(arg, "https://") {
+			if strings.Contains(arg, "?") {
+				args[i] = arg + "&" + param
+			} else {
+				args[i] = arg + "?" + param
+			}
+			return args
+		}
+		if strings.HasPrefix(arg, "--url=") {
+			url := strings.TrimPrefix(arg, "--url=")
+			if strings.Contains(url, "?") {
+				args[i] = "--url=" + url + "&" + param
+			} else {
+				args[i] = "--url=" + url + "?" + param
+			}
+			return args
+		}
+	}
+	return args
 }
 
 func addPoweredByHeader(args []string) []string {
